@@ -45,7 +45,7 @@ $(document).ready(function () {
     
     if (ball.position.y + 25 >= 250) {
       ball.speed.y = randomInt(-20, -10);
-    } else if (ball.position.y - 25 + <= 0) {
+    } else if (ball.position.y - 25 <= 0) {
       ball.speed.y = randomInt(10, 20);
     }
     
