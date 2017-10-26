@@ -1,4 +1,5 @@
 # arcade
+
 | Game | Link |
 | --- | --- |
-| Ball | https://joshuasmith2021.github.io/arcade/ball/ |
+| Ball | [https://joshuasmith2021.github.io/arcade/ball/](https://joshuasmith2021.github.io/arcade/ball/) |
