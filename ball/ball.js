@@ -42,9 +42,9 @@ $(document).ready(function () {
       ball.speed.x = randomInt(10, 20);
     }
     
-    if (ball.position.y + 25 + ball.speed.x >= 250) {
+    if (ball.position.y + 25 + ball.speed.y >= 250) {
       ball.speed.y = randomInt(-20, -10);
-    } else if (ball.position.y - 25 + ball.speed.x <= 0) {
+    } else if (ball.position.y - 25 + ball.speed.y <= 0) {
       ball.speed.y = randomInt(10, 20);
     }
     
