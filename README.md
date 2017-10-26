@@ -1,2 +1,4 @@
 # arcade
-Some games I make
+| Game | Link |
+| --- | --- |
+| Ball | https://joshuasmith2021.github.io/arcade/ball/ |
