@@ -36,15 +36,15 @@ $(document).ready(function () {
     ctx.arc(ball.position.x, ball.position.y, 25, 0, 2 * Math.PI);
     ctx.fill();
     // If the circle is at or past a wall, change direction
-    if (ball.position.x + 25 >= 500) {
+    if (ball.position.x + 25 + ball.speed.x >= 500) {
       ball.speed.x = randomInt(-20, -10);
-    } else if (ball.position.x - 25 <= 0) {
+    } else if (ball.position.x - 25 + ball.speed.x <= 0) {
       ball.speed.x = randomInt(10, 20);
     }
     
-    if (ball.position.y + 25 >= 250) {
+    if (ball.position.y + 25 + ball.speed.x >= 250) {
       ball.speed.y = randomInt(-20, -10);
-    } else if (ball.position.y - 25 <= 0) {
+    } else if (ball.position.y - 25 + ball.speed.x <= 0) {
       ball.speed.y = randomInt(10, 20);
     }
     
