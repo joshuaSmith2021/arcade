@@ -10,15 +10,27 @@ $(document).ready(function () {
       pieces.push(false);
     }
   }
+  pieces.push(true);
 });
 
 $('.piece').click(function () {
   var target = parseInt($(this).attr('id'), 10);
+  var string = $(this).text();
   var clicked = $(this);
-  if (!pieces[target + 1] && target + 1 % 4 !== 0 && target < 15) {
+  if (!pieces[target + 1] && target + 1 % 4 !== 0) {
     pieces[target] = false;
     pieces[target + 1] = true;
     document.getElementsByClassName('piece')[target].innerHTML = '';
-    document.getElementsByClassName('piece')[target + 1].innerHTML = target + 1;
+    document.getElementsByClassName('piece')[target + 1].innerHTML = string;
+  } else if (!pieces[target - 1] && target + 4 % 4 !== 0) {
+    pieces[target] = false;
+    pieces[target - 1] = true;
+    document.getElementsByClassName('piece')[target].innerHTML = '';
+    document.getElementsByClassName('piece')[target - 1].innerHTML = string;
+  } else if (!pieces[target + 4] && target < 12) {
+    pieces[target] = false;
+    pieces[target + 4] = true;
+    document.getElementsByClassName('piece')[target].innerHTML = '';
+    document.getElementsByClassName('piece')[target + 4].innerHTML = target + 1;
   }
 });
