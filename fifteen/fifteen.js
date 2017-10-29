@@ -32,5 +32,10 @@ $('.piece').click(function () {
     pieces[target + 4] = true;
     document.getElementsByClassName('piece')[target].innerHTML = '';
     document.getElementsByClassName('piece')[target + 4].innerHTML = target + 1;
+  } else if (!pieces[target - 4] && target > 3) {
+    pieces[target] = false;
+    pieces[target - 4] = true;
+    document.getElementsByClassName('piece')[target].innerHTML = '';
+    document.getElementsByClassName('piece')[target - 4].innerHTML = target + 1;    
   }
 });
