@@ -39,3 +39,28 @@ $('.piece').click(function () {
     document.getElementsByClassName('piece')[target - 4].innerHTML = string;    
   }
 });
+
+function generateRandomInteger(min, max) {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+}
+
+$('#scramble').click(function () {
+  var needRepeat = 0;
+  while (needRepeat < 20) {
+    var randomInt = generateRandomInteger(0, 15);
+    var piece = document.getElementsByClassName('piece')[randomInt];
+    if (!pieces[randomInt + 1] && randomInt + 1 % 4 !== 0) {
+      $(piece).click();
+      needRepeat++;
+    } else if (!pieces[randomInt - 1] && randomInt + 4 % 4 !== 0) {
+      $(piece).click();
+      needRepeat++;
+    } else if (!pieces[randomInt + 4] && randomInt < 12) {
+      $(piece).click();
+      needRepeat++;
+    } else if (!pieces[randomInt - 4] && randomInt > 3) {
+      $(piece).click();
+      needRepeat++;
+    }
+  }
+});
