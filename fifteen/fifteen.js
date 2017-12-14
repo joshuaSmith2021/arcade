@@ -51,21 +51,16 @@ $('#scramble').click(function () {
     var piece = document.getElementsByClassName('piece')[randomInt];
     if (!pieces[randomInt + 1] && randomInt + 1 % 4 !== 0) {
       $(piece).click();
+      needRepeat++;
     } else if (!pieces[randomInt - 1] && randomInt + 4 % 4 !== 0) {
-      pieces[randomInt] = false;
-      pieces[randomInt - 1] = true;
-      document.getElementsByClassName('piece')[randomInt].innerHTML = '';
-      document.getElementsByClassName('piece')[randomInt - 1].innerHTML = string;
+      $(piece).click();
+      needRepeat++;
     } else if (!pieces[randomInt + 4] && randomInt < 12) {
-      pieces[randomInt] = false;
-      pieces[randomInt + 4] = true;
-      document.getElementsByClassName('piece')[randomInt].innerHTML = '';
-      document.getElementsByClassName('piece')[randomInt + 4].innerHTML = string;
+      $(piece).click();
+      needRepeat++;
     } else if (!pieces[randomInt - 4] && randomInt > 3) {
-      pieces[randomInt] = false;
-      pieces[randomInt - 4] = true;
-      document.getElementsByClassName('piece')[randomInt].innerHTML = '';
-      document.getElementsByClassName('piece')[randomInt - 4].innerHTML = string;    
+      $(piece).click();
+      needRepeat++;
     }
   }
 });
