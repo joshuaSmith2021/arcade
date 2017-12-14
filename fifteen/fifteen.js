@@ -40,6 +40,11 @@ $('.piece').click(function () {
   }
 });
 
+function generateRandomInteger(min, max) {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+}
+
 $('#scramble').click(function () {
-  
+  var randomInt = generateRandomInteger(0, 15);
+  var piece = document.getElementsByTagName('')
 });
