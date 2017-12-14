@@ -39,3 +39,7 @@ $('.piece').click(function () {
     document.getElementsByClassName('piece')[target - 4].innerHTML = string;    
   }
 });
+
+$('#scramble').click(function () {
+  
+});
