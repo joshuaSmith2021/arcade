@@ -1,5 +1,6 @@
 var COLS = 26, ROWS = 26;
 var EMPTY = 0, SNAKE = 1, FRUIT = 2;
+var LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3;
 
 var grid = {
   width: null,
@@ -62,9 +63,30 @@ function setFood () {
   grid.set(FRUIT, randpos.x, randpos.y);
 }
 
-function main () {}
+// Game objects
+var canvas, ctx, keystate, frames;
 
-function init () {}
+function main () {
+  canvas = document.createElement('canvas');
+  canvas.width = COLS * 20;
+  canvas.height = ROWS * 20;
+  ctx = canvas.getContext('2d');
+  document.body.appendChild(canvas);
+  
+  frames = 0;
+  keystate = {};
+  
+  init();
+  loop();
+}
+
+function init () {
+  grid.init(EMPTY, COLS, ROWS);
+  
+  var sp = {x:Math.floor(COLS/2), y:ROWS-1};
+  snake.init(UP, sp.x, sp.y);
+  grid.set(SNAKE, sp.x, sp.y);
+}
 
 function loop () {}
 
