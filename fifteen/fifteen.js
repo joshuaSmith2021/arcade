@@ -45,7 +45,27 @@ function generateRandomInteger(min, max) {
 }
 
 $('#scramble').click(function () {
-  var randomInt = generateRandomInteger(0, 15);
-  var piece = document.getElementsByClassName('piece')[randomInt];
-  
+  var needRepeat = 0;
+  while (needRepeat < 20) {
+    var randomInt = generateRandomInteger(0, 15);
+    var piece = document.getElementsByClassName('piece')[randomInt];
+    if (!pieces[randomInt + 1] && randomInt + 1 % 4 !== 0) {
+      $(piece).click();
+    } else if (!pieces[randomInt - 1] && randomInt + 4 % 4 !== 0) {
+      pieces[randomInt] = false;
+      pieces[randomInt - 1] = true;
+      document.getElementsByClassName('piece')[randomInt].innerHTML = '';
+      document.getElementsByClassName('piece')[randomInt - 1].innerHTML = string;
+    } else if (!pieces[randomInt + 4] && randomInt < 12) {
+      pieces[randomInt] = false;
+      pieces[randomInt + 4] = true;
+      document.getElementsByClassName('piece')[randomInt].innerHTML = '';
+      document.getElementsByClassName('piece')[randomInt + 4].innerHTML = string;
+    } else if (!pieces[randomInt - 4] && randomInt > 3) {
+      pieces[randomInt] = false;
+      pieces[randomInt - 4] = true;
+      document.getElementsByClassName('piece')[randomInt].innerHTML = '';
+      document.getElementsByClassName('piece')[randomInt - 4].innerHTML = string;    
+    }
+  }
 });
