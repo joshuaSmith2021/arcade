@@ -46,5 +46,6 @@ function generateRandomInteger(min, max) {
 
 $('#scramble').click(function () {
   var randomInt = generateRandomInteger(0, 15);
-  var piece = document.getElementsByTagName('')
+  var piece = document.getElementsByClassName('piece')[randomInt];
+  
 });
