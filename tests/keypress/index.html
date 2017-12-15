@@ -2,17 +2,14 @@
 <html>
 <head>
   <title>Keypress Detection // No jQuery</title>
-  <style>
-canvas {
-  border: 1px solid gray;
-}
-  </style>
 </head>
 <body>
   <canvas id="game-board" width="250" height="250"></canvas>
   <script>
 var canvas = document.getElementById('game-board');
 var ctx = canvas.getContext('2d');
+var y = 0;
+ctx.fillRect(0, 0, 50, 50);
 
 document.onkeypress = function (key) {
   ctx.clearRect(0, 0, 250, 250);
@@ -21,12 +18,15 @@ document.onkeypress = function (key) {
   var keyPressed = key.keyCode;
   
   if (keyPressed === 119) {
-    ctx.fillText('W', 50, 50);
+    if (y > 0) {
+      y -= 50;
+    }
   } else if (keyPressed === 115) {
-    ctx.fillText('S', 50, 50);
-  } else {
-    ctx.fillText(':(', 50, 50);
+    if (y < 200) {
+      y += 50;
+    }
   }
+  ctx.fillRect(0, y, 50, 50);
 };
   </script>
 </body>
