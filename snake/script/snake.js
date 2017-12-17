@@ -1,97 +1,49 @@
-var COLS = 26, ROWS = 26;
-var EMPTY = 0, SNAKE = 1, FRUIT = 2;
-var LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3;
+var canvas = document.getElementById('game-board');
+var ctx = canvas.getContext('2d');
+var snakeSize = 10;
+var w = canvas.style.width;
+var h = canvas.style.height;
+var score = 0;
+var snake;
+var food;
 
-var grid = {
-  width: null,
-  height: null,
-  _grid: null,
+// Module Pattern
+var drawModule = (function () {
+  var bodySnake = function (x, y) {
+    // Single Square
+    ctx.fillStyle = '#00ff00';
+    ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
+  };
   
-  init: function (d, c, r) {
-    this.width = c;
-    this.height = r;
-    
-    this._grid = [];
-    for (var x = 0; x < c; x++) {
-      this._grid.push([]);
-      for (var y = 0; y < r; y++) {
-        this._grid[x].push([d]);
-      }
-    }
-  },
+  var pizza = function (x, y) {
+    ctx.fillStyle = '#ff0000';
+    ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
+  };
   
-  set: function (val, x, y) {
-    this._grid[x][y] = val;
-  },
+  var scoreText = function () {
+    // Display the score
+    var scoreText = "Score: " + score;
+    ctx.fillStyle = '#0000ff';
+    ctx.fillText(scoreText, 145, h - 5);
+  };
+});
+
+var drawSnake = function () {
+  var length = 4;
+  snake = [];
   
-  get: function (x, y) {
-    return this._grid[x][y];
+  for (var i = length; i >= 0; i--) {
+    snake.push({x:i, y:0});
   }
 };
 
-var snake = {
-  direction: null,
-  _queue: null,
+var createFood = function () {
+  food = {
+    x: Math.floor((Math.random() * 30) + 1),
+    y: Math.floor((Math.random() * 30) + 1)
+  };
   
-  init: function (d, x, y) {
-    this.direction = d;
+  for (var i = 0; i > snake.length; i++) {
     
-    this._queue = [];
-    this.insert(x, y);
-  },
-  
-  insert: function (x, y) {
-    this._queue.unshift({x:x, y:y});
-    this.last = this._queue[0];
-  },
-  
-  remove: function () {
-    return this._queue.pop();
   }
 };
-
-function setFood () {
-  var empty = [];
-  for (var x = 0; x < grid.width; x++) {
-    for (var y = 0; y < grid.height; y++) {
-      if (grid.get(x, y) === EMPTY) {
-        empty.push({x:x, y:y});
-      }
-    }
-  }
-  var randpos = empty[Math.floor(Math.random() * empty.length)];
-  grid.set(FRUIT, randpos.x, randpos.y);
-}
-
-// Game objects
-var canvas, ctx, keystate, frames;
-
-function main () {
-  canvas = document.createElement('canvas');
-  canvas.width = COLS * 20;
-  canvas.height = ROWS * 20;
-  ctx = canvas.getContext('2d');
-  document.body.appendChild(canvas);
-  
-  frames = 0;
-  keystate = {};
-  
-  init();
-  loop();
-}
-
-function init () {
-  grid.init(EMPTY, COLS, ROWS);
-  
-  var sp = {x:Math.floor(COLS/2), y:ROWS-1};
-  snake.init(UP, sp.x, sp.y);
-  grid.set(SNAKE, sp.x, sp.y);
-}
-
-function loop () {}
-
-function update () {}
-
-function draw () {}
-
-main();
